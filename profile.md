@@ -1,9 +1,11 @@
-# machine-learning-zoomcamp — Learner Profile
+# Machine Learning Zoomcamp — Learner Profile
 
 Why this course matters:
 
 ## Concepts
 | Concept | Mastery | Last reviewed | Lesson | Notes |
 |---|---|---|---|---|
-| Matrix-vector multiplication dimension rule | shaky | 2026-08-27 | | Initially read `U.shape[1] == v.shape[0]` as a different/new rule from `u.shape[0] == v.shape[0]` in vector-vector multiplication; didn't immediately see that `U.shape[1]` is just "the length of a row of U" and the underlying dot-product-equal-length rule is unchanged. |
-| Matrix-matrix multiplication implementation | shaky | 2026-08-27 | [[lessons/0001-matrix-matrix-multiplication.html]] | In a draft `matrix_matrix_multiplication`, asserted both `U.shape[0]==V.shape[1]` AND `U.shape[1]==V.shape[0]` (over-constrained; only the inner-dimension check is needed), and looped over rows of U while indexing `V[i,:]` (a row) instead of looping over columns of V and indexing `V[:,i]` — same row-vs-column axis mix-up as the matrix-vector case, one level up. Result array shape was also wrong (`(U.shape[0], U.shape[1])` instead of `(U.shape[0], V.shape[1])`). |
+| Pandas — counting rows vs. per-column non-null counts | shaky | 2026-08-28 | | HW1 Q2: used `df.count()` (per-column non-null) to answer "how many records" instead of `len(df)`/`df.shape[0]`; got the right number only because the columns checked happened to have no nulls |
+| Pandas — counting distinct categorical values | shaky | 2026-08-28 | | HW1 Q3: used `groupby(...).mean()` and eyeballed the row count to answer "how many fuel types" instead of `.nunique()`; right answer, wrong tool |
+| Pandas — fillna + recomputing summary stats | untested | 2026-08-28 | | HW1 Q6 left incomplete — computed median before fillna (149.0) but never found the mode, applied fillna, or recomputed the median after |
+| NumPy — normal equation (XTX inverse, linear regression by hand) | solid | 2026-08-28 | | HW1 Q7 done correctly end-to-end: build X, XTX, invert, multiply by y, matches reference (0.5188 → 0.51) |
