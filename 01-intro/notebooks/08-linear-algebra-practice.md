@@ -29,9 +29,9 @@ Plan:
 * Identity matrix
 * Inverse
 
-```python
+```python jupyter={"is_executing": false}
 # Import numpy
-
+import numpy as np
 ```
 
 ## Vector operations
@@ -42,10 +42,11 @@ Plan:
 4. Compute `u + v`.
 5. Compute `u * v` (element-wise). Note this is *not* the dot product — keep that distinction in mind for the next section.
 
-```python
+```python jupyter={"is_executing": false}
 # 1-5. vector operations
-u = None
-v = None
+u = np.array([2, 4, 5, 6])
+v = np.array([1, 0,  0, 2])
+print(v.shape)
 
 ```
 
@@ -58,86 +59,94 @@ v = None
 2. Test it on `u` and `v` above.
 3. Confirm your result matches `u.dot(v)`.
 
-```python
+```python jupyter={"is_executing": false}
 def vector_vector_multiplication(u, v):
     # TODO: assert shapes match, loop over elements, accumulate the sum
-    pass
+    assert u.shape == v.shape
+    sum = 0
+    for i in range(len(u)):
+	    sum += u[i] * v[i]
+    return sum
 
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # test against u.dot(v)
-
+print(u.dot(v) == vector_vector_multiplication(u, v))
 ```
 
-<!-- #region -->
 ### Matrix-vector multiplication
 
 1. Create the matrix:
 
-```python
+```python jupyter={"is_executing": false}
 U = np.array([
     [2, 4, 5, 6],
     [1, 2, 1, 2],
     [3, 1, 2, 1],
 ])
+print(U.shape[0])
 ```
 
 2. Check `U.shape` and reason about which dimension must match `v`'s length.
 3. Write `matrix_vector_multiplication(U, v)` that reuses your `vector_vector_multiplication` function — loop over the rows of `U`, computing one dot product per row.
 4. Test it against `U.dot(v)`.
-<!-- #endregion -->
 
-```python
-U = None
+```python jupyter={"is_executing": false}
+print(U.shape[1] == v.shape[0])
 
 ```
 
-```python
+```python jupyter={"is_executing": false}
 def matrix_vector_multiplication(U, v):
     # TODO: assert shapes match, loop over rows, reuse vector_vector_multiplication
-    pass
+    assert U.shape[1] == v.shape[0]
+    result = np.zeros(U.shape[0])
+    for i in range(len(U)):
+	    result[i] = vector_vector_multiplication(U[i], v)
+    return result
 
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # test against U.dot(v)
+print(U.dot(v) == matrix_vector_multiplication(U, v))
 
 ```
 
-<!-- #region -->
+
 ### Matrix-matrix multiplication
 
 1. Create the matrix:
 
-```python
+```python jupyter={"is_executing": false}
 V = np.array([
     [1, 1, 2],
     [0, 0.5, 1],
     [0, 2, 1],
     [2, 1, 0],
 ])
+print(V.shape)
 ```
 
 2. Write `matrix_matrix_multiplication(U, V)` that reuses `matrix_vector_multiplication` — loop over the columns of `V`, treating each column as a vector to multiply against `U`.
 3. Test it against `U.dot(V)`.
-<!-- #endregion -->
 
-```python
-V = None
-
-```
-
-```python
+```python jupyter={"is_executing": false}
 def matrix_matrix_multiplication(U, V):
-    # TODO: assert shapes match, loop over columns of V, reuse matrix_vector_multiplication
-    pass
+	# TODO: assert shapes match, loop over columns of V, reuse matrix_vector_multiplication
+	assert U.shape[0] == V.shape[1]
+	result = np.zeros((U.shape[0], U.shape[1]))
+	for i in range(V.shape[1]):
+		result[i] = matrix_vector_multiplication(U, V[i, :])
+	return result
 
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # test against U.dot(V)
-
+print(U, V)
+U.dot(V)
 ```
 
 ## Identity matrix
