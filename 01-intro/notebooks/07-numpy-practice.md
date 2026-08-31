@@ -8,9 +8,9 @@ jupyter:
       format_version: '1.3'
       jupytext_version: 1.19.5
   kernelspec:
-    display_name: Python 3 (ipykernel)
+    display_name: Python (python)
     language: python
-    name: python3
+    name: jupymd-python-550ed4d15e
 ---
 
 # Machine Learning Zoomcamp
@@ -172,26 +172,34 @@ n
 7. Using `a` and `b` from above, build a boolean mask that is `True` where `a > 1` **and** `b < 3`, and use it to filter `a`. (Hint: `&`, or `np.logical_and`.)
 8. Build a mask that is `True` where `a == 0` **or** `a == 4`, and use it to filter `a`.
 
-```python
+```python jupyter={"is_executing": false}
 # 1-3. a, b, a / b + 10
 a = None
 b = None
-
+a = np.arange(5)
+b = (10 + (a * 2)) ** 2 / 100
+print(a)
+print(b)
+print( a / b + 10)
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # 4-6. comparisons and boolean indexing
-
+print( a >= 2)
+print (a > b)
+print(a[a>b])
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # 7. AND mask
-
+mask = (a > 1) & (b < 3)
+print(a[mask])
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # 8. OR mask
-
+mask = (a == 0) | (a == 4)
+print(a[mask])
 ```
 
 ## Summarizing operations
@@ -203,19 +211,24 @@ Using `a` from before:
 3. Using `n` from the multi-dimensional section, compute its minimum and maximum.
 4. Bonus: compute the min of `n` along each axis separately (`axis=0` and `axis=1`) and explain the difference in your own words.
 
-```python
+```python jupyter={"is_executing": false}
 # 1-2. std, mean, sum of a
-
+print(a.std())
+print(a.sum())
+a.mean()
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # 3. min/max of n
-
+print(n.max())
+n.min()
 ```
 
-```python
+```python jupyter={"is_executing": false}
 # 4. bonus: axis=0 vs axis=1
-
+print(n)
+print(n.min(axis=0))
+print(n.min(axis=1))
 ```
 
 ### Next
